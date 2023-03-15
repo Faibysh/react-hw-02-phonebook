@@ -1,16 +1,26 @@
-export const App = () => {
+import { useState } from 'react';
+import ContactForm from './contactform/ContactForm';
+import ContactList from './contactlist/ContactList';
+export function App() {
+  const [contacts, setContacts] = useState([]);
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
+  const addContact = newContact => {
+    setContacts(prevContacts => [...prevContacts, newContact]);
+  };
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div className="App">
+      <h1>Phonebook</h1>
+      <ContactForm
+        name={name}
+        setName={setName}
+        number={number}
+        setNumber={setNumber}
+        addContact={addContact}
+      />
+      <ContactList contacts={contacts} />
     </div>
   );
-};
+}
