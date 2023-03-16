@@ -1,0 +1,16 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: start;
+  list-style-type: none;
+  margin-bottom: 7px;
+  padding-left: 75px;
+}

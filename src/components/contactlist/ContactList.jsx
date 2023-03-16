@@ -1,9 +1,11 @@
+import styles from './ContactList.module.css';
+
 function ContactList({ contacts }) {
   return (
-    <ul>
+    <ul className={styles.list}>
       {contacts.map(contact => (
-        <li key={contact.id}>
-          {contact.name} - {contact.number}
+        <li className={styles.item} key={contact.id}>
+          {contact.name}: {contact.number}
         </li>
       ))}
     </ul>

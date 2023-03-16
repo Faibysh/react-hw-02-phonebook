@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import styles from './ContactForm.module.css';
 
 function ContactForm({ name, setName, number, setNumber, addContact }) {
   const handleSubmit = event => {
@@ -10,9 +11,12 @@ function ContactForm({ name, setName, number, setNumber, addContact }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name:</label>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <label className={styles.label} htmlFor="name">
+        Name:
+      </label>
       <input
+        className={styles.input}
         type="text"
         name="name"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я])$"
@@ -21,8 +25,11 @@ function ContactForm({ name, setName, number, setNumber, addContact }) {
         value={name}
         onChange={event => setName(event.target.value)}
       />
-      <label htmlFor="number">Number:</label>
+      <label className={styles.label} htmlFor="number">
+        Number:
+      </label>
       <input
+        className={styles.input}
         type="tel"
         name="number"
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -31,7 +38,9 @@ function ContactForm({ name, setName, number, setNumber, addContact }) {
         value={number}
         onChange={event => setNumber(event.target.value)}
       />
-      <button type="submit">Add contact</button>
+      <button className={styles.button} type="submit">
+        Add contact
+      </button>
     </form>
   );
 }

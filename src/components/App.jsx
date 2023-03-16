@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ContactForm from './contactform/ContactForm';
 import ContactList from './contactlist/ContactList';
 import Filter from './filter/Filter';
+import styles from './App.module.css';
 
 export function App() {
   const [contacts, setContacts] = useState([
@@ -34,8 +35,8 @@ export function App() {
   );
 
   return (
-    <div className="App">
-      <h1>Phonebook</h1>
+    <div className={styles.app}>
+      <h1 className={styles.title}>Phonebook</h1>
       <ContactForm
         name={name}
         setName={setName}
@@ -43,7 +44,7 @@ export function App() {
         setNumber={setNumber}
         addContact={addContact}
       />
-      <h2>Contacts</h2>
+      <h2 className={styles.title}>Contacts</h2>
       <Filter value={filter} onChange={handleChangeFilter} />
       <ContactList contacts={filteredContacts} />
     </div>
