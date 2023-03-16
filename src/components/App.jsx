@@ -1,14 +1,37 @@
 import { useState } from 'react';
 import ContactForm from './contactform/ContactForm';
 import ContactList from './contactlist/ContactList';
+import Filter from './filter/Filter';
+
 export function App() {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState([
+    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+  ]);
+  const [filter, setFilter] = useState('');
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const addContact = newContact => {
+    const isContactExist = contacts.some(
+      contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+    );
+    if (isContactExist) {
+      alert(`${newContact.name} is already in contacts`);
+      return;
+    }
     setContacts(prevContacts => [...prevContacts, newContact]);
   };
+
+  const handleChangeFilter = event => {
+    setFilter(event.target.value);
+  };
+
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <div className="App">
@@ -20,7 +43,9 @@ export function App() {
         setNumber={setNumber}
         addContact={addContact}
       />
-      <ContactList contacts={contacts} />
+      <h2>Contacts</h2>
+      <Filter value={filter} onChange={handleChangeFilter} />
+      <ContactList contacts={filteredContacts} />
     </div>
   );
 }
